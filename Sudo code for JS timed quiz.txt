@@ -1,0 +1,16 @@
+Sudo for Javascript timed quiz
+
+When I click on the page I am presented with a title card and instructions on how to play above a 'start' button
+when I click 'start' I start a quiz containing 10 randomly selected questions from a list of 20 or so and clock of 60 seconds begins to count down
+These questions will have 4 choices for answers 1 is correct and the other 3 are assinged to the question in question
+if answered corrently the question will change and a seperate title will appear confriming the selection was correct! answer will be logged as true
+if answered false the question will change and a seperate title will appear confriming the selection was wrong answer will be logged as false
+Also if answered false the clock will loose 5 seconds
+if all questions are answered or time runs to 0 the game will end and give the player their score based off the time remaining 
+player is able to enter their initals and 'save' score into local or 'discard time' 
+if 'save' is pressed link player to scoreboard
+if 'discard time' is pressed link player back to home screen
+at scoreboard two buttons will be present one will say 'return to start' and once will say 'clear'
+if 'return to start' is pressed link player back to home screen
+if 'clear' is pressed all data stored on scoreboard is deleted
+The scoreboard should show all attemps made with initals and score and score should be decending from top-down
