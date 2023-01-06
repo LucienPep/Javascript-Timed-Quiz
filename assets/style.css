@@ -11,6 +11,10 @@
     src: url(Fonts/intrepid.ttf);
 }
 
+:root {
+    --Highlight: #8cecf7;
+}
+
 html {
     font-family: 'main',Arial, Helvetica, sans-serif;
     text-align: center;
@@ -30,6 +34,12 @@ h1, h2, h3 {
     letter-spacing: 1px;
 }
 
+h1 {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-color: var(--Highlight);
+}
+
 h2, h3 {
     padding: 0 20px 20px 20px;
 }
@@ -46,15 +56,23 @@ p {
 }
 
 button {
+    border-style: solid;
+    border-width: 3px;
     font-family: 'main',Arial, Helvetica, sans-serif;
     font-size: 30px;
     letter-spacing: 1px;
     padding: 5px 0 5px 0;
     border-radius: 10px;
-    border-color: aqua;
+    border-color: var(--Highlight);
     color: white;
     background-color: black;
-    margin: 5px 35% 5px 35%;
-  
-    
+    margin: 5px 35% 5px 35%;    
+}
+
+button:hover {
+    background-color: rgb(49, 49, 49);
+}
+
+button:active {
+    background-color: var(--Highlight);
 }
