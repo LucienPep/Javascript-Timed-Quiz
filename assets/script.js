@@ -8,8 +8,11 @@ var start = document.getElementById('startBTN')
 var score = document.getElementById('scoreBTN')
 var h3 = document.getElementById('h3')
 var buttons = document.getElementById('buttons')
+var timeArea = document.getElementById('timer')
 var check = ''
 var correctSelection = ''
+var tellTime = ''
+
 
 var TotalQuestions = [
     {question: 'this is question no.1',
@@ -54,6 +57,21 @@ var TotalQuestions = [
         },
     ]
 
+var seconds = 60
+
+function timerstart(){
+    if(tellTime === 'no'){
+        seconds = seconds - 6;
+        setTimeout(timerstart,1000)
+    }
+    else if(seconds > 0){
+        seconds --
+        setTimeout(timerstart,1000)
+    }else {
+        console.log('banana')
+    }
+    timeArea.innerHTML = seconds
+}
 
 function startquiz() {
     paragraph.innerHTML = '';
@@ -64,6 +82,7 @@ function startquiz() {
     currentQuestion = 0;
 
     selectQuestion(currentQuestion) 
+    timerstart()
 }
 
 function nextQuestion() {
@@ -92,9 +111,11 @@ function checker() {
     }else{
         console.log("wrong")
         h3.innerHTML = "Wrong"
-        setTimeout(clock, 1000)
+        tellTime = 'no'
+        setTimeout(clock, 999)
         function clock() {
         h3.innerHTML = ''
+        tellTime = ''
        }
     }
     nextQuestion()
