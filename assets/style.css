@@ -49,9 +49,12 @@ h3 {
 }
 
 .ans {
-    font-size: larger;
+    font-size: x-large;
     font-weight: bolder;
-    
+}
+
+.ans:hover {
+    color: grey;
 }
 
 p {
