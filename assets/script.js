@@ -9,6 +9,7 @@ var score = document.getElementById('scoreBTN')
 var h3 = document.getElementById('h3')
 var buttons = document.getElementById('buttons')
 var check = ''
+var correctSelection = ''
 
 var TotalQuestions = [
     {question: 'this is question no.1',
@@ -17,7 +18,7 @@ var TotalQuestions = [
         b:'no', 
         c:'nay',
         d:'nah'},
-        correctAnswer: 'a'
+        correctAnswer: 'A'
         },
     {question: 'this is question no.2',
     answer:{
@@ -25,7 +26,7 @@ var TotalQuestions = [
         b:'no', 
         c:'yes',
         d:'nah'},
-        correctAnswer: 'c'
+        correctAnswer: 'C'
         },
     {question: 'this is question no.3',
     answer:{
@@ -33,7 +34,7 @@ var TotalQuestions = [
         b:'yes', 
         c:'nay',
         d:'nah'},
-        correctAnswer: 'b'
+        correctAnswer: 'B'
         },
     {question: 'this is question no.4',
     answer:{
@@ -41,7 +42,7 @@ var TotalQuestions = [
         b:'no', 
         c:'nay',
         d:'yes'},
-        correctAnswer: 'a'
+        correctAnswer: 'D'
         },
     {question: 'this is question no.5',
     answer:{
@@ -49,7 +50,7 @@ var TotalQuestions = [
         b:'no', 
         c:'nay',
         d:'nah'},
-        correctAnswer: 'a'
+        correctAnswer: 'A'
         },
     ]
 
@@ -76,31 +77,48 @@ function selectQuestion(index) {
     an2.innerHTML = TotalQuestions[index].answer.b
     an3.innerHTML = TotalQuestions[index].answer.c
     an4.innerHTML = TotalQuestions[index].answer.d
+    correctSelection = TotalQuestions[index].correctAnswer
+    
 }
 
-function checker(selector) {
-    console.log(selector)
+function checker() {
+    if(correctSelection === check){
+        console.log("correct")
+        h3.innerHTML = "Correct!"
+        setTimeout(clock, 1000)
+        function clock() {
+        h3.innerHTML = ''
+       }
+    }else{
+        console.log("wrong")
+        h3.innerHTML = "Wrong"
+        setTimeout(clock, 1000)
+        function clock() {
+        h3.innerHTML = ''
+       }
+    }
+    nextQuestion()
 }
 
 an1.addEventListener('click', function() {
     check = 'A'
     console.log(check)
-    nextQuestion()
+    checker()
 })
 an2.addEventListener('click', function() {
     check = 'B'
     console.log(check)
-    nextQuestion()
+    checker()
 })
 an3.addEventListener('click', function() {
     check = 'C'
     console.log(check)
-    nextQuestion()
+    checker()
 })
 an4.addEventListener('click', function() {
     check = 'D'
     console.log(check)
-    nextQuestion()
+    checker()
 })
 
 
