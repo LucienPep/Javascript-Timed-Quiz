@@ -12,6 +12,7 @@ var timeArea = document.getElementById('timer')
 var check = ''
 var correctSelection = ''
 var tellTime = ''
+var timeScore = ''
 
 
 var TotalQuestions = [
@@ -60,17 +61,40 @@ var TotalQuestions = [
 var seconds = 60
 
 function timerstart(){
-    if(tellTime === 'no'){
-        seconds = seconds - 6;
-        setTimeout(timerstart,1000)
-    }
-    else if(seconds > 0){
-        seconds --
-        setTimeout(timerstart,1000)
+    if(seconds > 0){
+	    if(tellTime === 'no'){
+        	seconds = seconds - 5;
+        	setTimeout(timerstart,1000)
+        	timeArea.innerHTML = seconds
+        }else{
+        	seconds --
+        	setTimeout(timerstart,1000)
+        	timeArea.innerHTML = seconds
+        }
     }else {
-        console.log('banana')
+        questiontext.innerHTML = '';
+        timeArea.innerHTML = '';
+        an1.innerHTML = '';
+        an2.innerHTML = '';
+        an3.innerHTML = '';
+        an4.innerHTML = '';
+        h3.innerHTML = '';
+        scoreEnter()
     }
-    timeArea.innerHTML = seconds
+}
+
+function scoreEnter(){
+    console.log(timeScore)
+    questiontext.innerHTML = "Your score was" + '<br>' + timeScore;
+    var input = document.createElement('input')
+    input.setAttribute("type", "text");
+    input.setAttribute("value", '');
+    h3.appendChild(input)
+    an2.innerHTML = "Enter your initials"
+    var subButton = document.createElement('button')
+    subButton.innerHTML = "Submit"
+    buttons.appendChild(subButton)
+
 }
 
 function startquiz() {
@@ -91,13 +115,22 @@ function nextQuestion() {
 }
 
 function selectQuestion(index) {
+    if(index <= 4){
     questiontext.innerHTML = TotalQuestions[index].question
     an1.innerHTML = TotalQuestions[index].answer.a
     an2.innerHTML = TotalQuestions[index].answer.b
     an3.innerHTML = TotalQuestions[index].answer.c
     an4.innerHTML = TotalQuestions[index].answer.d
     correctSelection = TotalQuestions[index].correctAnswer
-    
+    }else{
+       // console.log(seconds)
+       setTimeout(final, 1000)
+        function final() {
+            timeScore = seconds
+            seconds = 0
+        }
+    }
+    console.log(timeScore)
 }
 
 function checker() {
@@ -112,7 +145,7 @@ function checker() {
         console.log("wrong")
         h3.innerHTML = "Wrong"
         tellTime = 'no'
-        setTimeout(clock, 999)
+        setTimeout(clock, 1000)
         function clock() {
         h3.innerHTML = ''
         tellTime = ''

@@ -89,3 +89,10 @@ button:hover {
 button:active {
     background-color: var(--Highlight);
 }
+
+input {
+    padding: 10px;
+    font-family: 'main',Arial, Helvetica, sans-serif ;
+    font-size: large;
+    text-align: center;
+}
