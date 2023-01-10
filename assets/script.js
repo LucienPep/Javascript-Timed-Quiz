@@ -9,10 +9,14 @@ var score = document.getElementById('scoreBTN')
 var h3 = document.getElementById('h3')
 var buttons = document.getElementById('buttons')
 var timeArea = document.getElementById('timer')
+var list = document.getElementById('list')
 var check = ''
 var correctSelection = ''
 var tellTime = ''
 var timeScore = ''
+var timeText = ''
+var finalScore = localStorage.getItem("score");
+var storageLength = ''
 
 
 var TotalQuestions = [
@@ -90,11 +94,51 @@ function scoreEnter(){
     input.setAttribute("type", "text");
     input.setAttribute("value", '');
     h3.appendChild(input)
+
     an2.innerHTML = "Enter your initials"
     var subButton = document.createElement('button')
     subButton.innerHTML = "Submit"
     buttons.appendChild(subButton)
 
+    subButton.addEventListener('click', function(){
+        //console.log(input.value)
+        timeText = JSON.stringify(timeScore)
+        timeText = '   ' + timeText
+        //localStorage.setItem(input.value, input.value + timeText);
+
+        storageLength = localStorage.length
+
+        if (storageLength ==  0){
+            localStorage.setItem(0, input.value + timeText);
+        }else{
+            localStorage.setItem(storageLength, input.value + timeText);
+        }
+
+
+        scoreBoard()
+    })
+}
+
+function scoreBoard(){
+    h3.innerHTML = 'Scoreboard';
+    questiontext.innerHTML = '';
+    an2.innerHTML = '';
+    buttons.innerHTML = '';
+
+
+    for (var i = 0, length = localStorage.length; i < length; i++){
+        console.log(i)
+        if (storageLength > 0){
+            //console.log(localStorage.getItem(i))
+            var item = document.createElement('li')
+            var text = document.createTextNode(localStorage.getItem(i)) 
+            item.appendChild(text)
+            list.appendChild(item)
+
+        }else{
+            timeArea.innerHTML = ''
+        }
+      }
 }
 
 function startquiz() {
