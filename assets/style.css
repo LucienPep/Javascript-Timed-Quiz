@@ -51,10 +51,13 @@ h3 {
 .ans {
     font-size: x-large;
     font-weight: bolder;
+    background-color: var(--Highlight);
+    margin: 10px 300px;
 }
 
 .ans:hover {
     color: grey;
+    background-color: #c2f3f8;
 }
 
 p {
@@ -96,3 +99,4 @@ input {
     font-size: large;
     text-align: center;
 }
+
