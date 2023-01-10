@@ -10,6 +10,8 @@ var h3 = document.getElementById('h3')
 var buttons = document.getElementById('buttons')
 var timeArea = document.getElementById('timer')
 var list = document.getElementById('list')
+var initalText = document.getElementById('inital')
+var submit = document.getElementById('submit')
 var check = ''
 var correctSelection = ''
 var tellTime = ''
@@ -20,44 +22,44 @@ var storageLength = ''
 
 
 var TotalQuestions = [
-    {question: 'this is question no.1',
+    {question: 'Which operator is used to assign a value to a variable?',
     answer:{
-        a:'yes',
-        b:'no', 
-        c:'nay',
-        d:'nah'},
+        a:"=",
+        b:"*", 
+        c:"-",
+        d:"+"},
         correctAnswer: 'A'
         },
-    {question: 'this is question no.2',
+    {question: 'How do you create a function in JavaScript?',
     answer:{
-        a:'nay',
-        b:'no', 
-        c:'yes',
-        d:'nah'},
+        a:'function:myFunction()',
+        b:'function + myFunction()', 
+        c:'function myFunction()',
+        d:'nfunction = myFunction()'},
         correctAnswer: 'C'
         },
-    {question: 'this is question no.3',
+    {question: 'How to write an IF statement in JavaScript?',
     answer:{
-        a:'no',
-        b:'yes', 
-        c:'nay',
-        d:'nah'},
+        a:'if i == 5 then',
+        b:'if (i == 5)', 
+        c:'if i = 5 then',
+        d:'if i = 5'},
         correctAnswer: 'B'
         },
-    {question: 'this is question no.4',
+    {question: 'How can you add a comment in a JavaScript?',
     answer:{
-        a:'nah',
-        b:'no', 
-        c:'nay',
-        d:'yes'},
+        a:"'Comment",
+        b:'!--Comment--', 
+        c:'/*Comment*/',
+        d:'//Comment'},
         correctAnswer: 'D'
         },
-    {question: 'this is question no.5',
+    {question: 'Which event occurs when the user clicks on an HTML element?',
     answer:{
-        a:'yes',
-        b:'no', 
-        c:'nay',
-        d:'nah'},
+        a:'onclick',
+        b:'onmouseclick', 
+        c:'onmouseover',
+        d:'onchange'},
         correctAnswer: 'A'
         },
     ]
@@ -66,15 +68,10 @@ var seconds = 60
 
 function timerstart(){
     if(seconds > 0){
-	    if(tellTime === 'no'){
-        	seconds = seconds - 5;
-        	setTimeout(timerstart,1000)
-        	timeArea.innerHTML = seconds
-        }else{
-        	seconds --
-        	setTimeout(timerstart,1000)
-        	timeArea.innerHTML = seconds
-        }
+        seconds --
+        setTimeout(timerstart,1000)
+        timeArea.innerHTML = seconds
+        
     }else {
         questiontext.innerHTML = '';
         timeArea.innerHTML = '';
@@ -83,19 +80,29 @@ function timerstart(){
         an3.innerHTML = '';
         an4.innerHTML = '';
         h3.innerHTML = '';
-        scoreEnter()
+        zero()
     }
+}
+
+function zero() {
+    if (seconds > 1){
+        timeScore = 0
+        scoreEnter()
+}else{
+    scoreEnter()
+}
 }
 
 function scoreEnter(){
     console.log(timeScore)
+    
     questiontext.innerHTML = "Your score was" + '<br>' + timeScore;
     var input = document.createElement('input')
     input.setAttribute("type", "text");
     input.setAttribute("value", '');
-    h3.appendChild(input)
+    submit.appendChild(input)
 
-    an2.innerHTML = "Enter your initials"
+    initalText.innerHTML = "Enter your initials"
     var subButton = document.createElement('button')
     subButton.innerHTML = "Submit"
     buttons.appendChild(subButton)
@@ -105,7 +112,6 @@ function scoreEnter(){
         timeText = JSON.stringify(timeScore)
         timeText = '   ' + timeText
         //localStorage.setItem(input.value, input.value + timeText);
-
         storageLength = localStorage.length
 
         if (storageLength ==  0){
@@ -116,10 +122,15 @@ function scoreEnter(){
 
 
         scoreBoard()
-    })
+    
+        })
+    
 }
 
 function scoreBoard(){
+    submit.innerHTML = '';
+    initalText.innerHTML = '';
+    paragraph.innerHTML = '';
     h3.innerHTML = 'Scoreboard';
     questiontext.innerHTML = '';
     an2.innerHTML = '';
@@ -128,8 +139,8 @@ function scoreBoard(){
 
     for (var i = 0, length = localStorage.length; i < length; i++){
         console.log(i)
-        if (storageLength > 0){
-            //console.log(localStorage.getItem(i))
+        if (i >= 0){
+            console.log(localStorage.getItem(i))
             var item = document.createElement('li')
             var text = document.createTextNode(localStorage.getItem(i)) 
             item.appendChild(text)
@@ -139,6 +150,22 @@ function scoreBoard(){
             timeArea.innerHTML = ''
         }
       }
+      var homeButton = document.createElement('button')
+      homeButton.innerHTML = "Home"
+      buttons.appendChild(homeButton)
+
+      homeButton.addEventListener('click', function(){
+        location.reload()
+      })
+
+      var clearButton = document.createElement('button')
+      clearButton.innerHTML = "Clear"
+      buttons.appendChild(clearButton)
+
+      clearButton.addEventListener('click', function(){
+        localStorage.clear()
+        location.reload()
+      })
 }
 
 function startquiz() {
@@ -168,11 +195,8 @@ function selectQuestion(index) {
     correctSelection = TotalQuestions[index].correctAnswer
     }else{
        // console.log(seconds)
-       setTimeout(final, 1000)
-        function final() {
-            timeScore = seconds
-            seconds = 0
-        }
+        timeScore = seconds
+        seconds = 0
     }
     console.log(timeScore)
 }
@@ -186,14 +210,18 @@ function checker() {
         h3.innerHTML = ''
        }
     }else{
-        console.log("wrong")
-        h3.innerHTML = "Wrong"
-        tellTime = 'no'
-        setTimeout(clock, 1000)
-        function clock() {
-        h3.innerHTML = ''
-        tellTime = ''
-       }
+        if(seconds > 5){
+            seconds = seconds - 5;
+            console.log("wrong")
+            h3.innerHTML = "Wrong"
+            setTimeout(clock, 1000)
+            function clock() {
+            h3.innerHTML = ''
+            }
+        }else{
+            seconds = 0
+        }
+
     }
     nextQuestion()
 }
@@ -222,6 +250,7 @@ an4.addEventListener('click', function() {
 
 
 start.addEventListener('click', startquiz);
+score.addEventListener('click', scoreBoard);
 
 
 
