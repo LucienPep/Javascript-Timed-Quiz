@@ -5,7 +5,7 @@
 }
 
 /* Initial presets for webpage */
-
+/*custom font */
 @font-face {
     font-family: "main";
     src: url(Fonts/intrepid.ttf);
@@ -47,7 +47,7 @@ h2 {
 h3 {
     padding: 0 20px 20px 20px;
 }
-
+/* parameters for the answer boxes */
 .ans {
     font-size: x-large;
     font-weight: bolder;
@@ -70,7 +70,7 @@ p {
     flex-flow: column;
     justify-content: center;
 }
-
+/* style for all buttons that display */
 button {
     border-style: solid;
     border-width: 3px;

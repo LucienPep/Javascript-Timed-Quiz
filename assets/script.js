@@ -1,3 +1,4 @@
+// Varaibles Decalred to use in code (keep code cleaner)
 var questiontext = document.getElementById('question')
 var an1 = document.getElementById('an1')
 var an2 = document.getElementById('an2')
@@ -20,7 +21,7 @@ var timeText = ''
 var finalScore = localStorage.getItem("score");
 var storageLength = ''
 
-
+//Questions for the quiz + there assigned answers + the correct answer for each question
 var TotalQuestions = [
     {question: 'Which operator is used to assign a value to a variable?',
     answer:{
@@ -62,10 +63,11 @@ var TotalQuestions = [
         d:'onchange'},
         correctAnswer: 'A'
         },
-    ]
+]
 
+//seconds declared for 1 minute
 var seconds = 60
-
+//start timer and run until seconds var = 0
 function timerstart(){
     if(seconds > 0){
         seconds --
@@ -83,7 +85,7 @@ function timerstart(){
         zero()
     }
 }
-
+//check if time is 0 and declare it as 0 so it doesn't remain unknown
 function zero() {
     if (timeScore <= 0){
         timeScore = 0
@@ -92,7 +94,7 @@ function zero() {
     scoreEnter()
 }
 }
-
+//function to show score, let user input initials and save that data set into local storage
 function scoreEnter(){
     console.log(timeScore)
     
@@ -126,7 +128,7 @@ function scoreEnter(){
         })
     
 }
-
+// function to draw up scoreboard using elements from local storage + buttons to return to page and reset local stoage
 function scoreBoard(){
     submit.innerHTML = '';
     initalText.innerHTML = '';
@@ -136,7 +138,7 @@ function scoreBoard(){
     an2.innerHTML = '';
     buttons.innerHTML = '';
 
-
+    //for each new score and initial create a new key in local storage and assign the value to that key
     for (var i = 0, length = localStorage.length; i < length; i++){
         console.log(i)
         if (i >= 0){
@@ -150,6 +152,7 @@ function scoreBoard(){
             timeArea.innerHTML = ''
         }
       }
+      //return to home button
       var homeButton = document.createElement('button')
       homeButton.innerHTML = "Home"
       buttons.appendChild(homeButton)
@@ -157,7 +160,7 @@ function scoreBoard(){
       homeButton.addEventListener('click', function(){
         location.reload()
       })
-
+      //clear local storage
       var clearButton = document.createElement('button')
       clearButton.innerHTML = "Clear"
       buttons.appendChild(clearButton)
@@ -167,7 +170,7 @@ function scoreBoard(){
         location.reload()
       })
 }
-
+//initial function to wipe clean page and set first question to 0
 function startquiz() {
     paragraph.innerHTML = '';
     h3.innerHTML = '';
@@ -179,12 +182,12 @@ function startquiz() {
     selectQuestion(currentQuestion) 
     timerstart()
 }
-
+//funtion for each question past add one more to show next question
 function nextQuestion() {
     currentQuestion = currentQuestion + 1
     selectQuestion(currentQuestion)
 }
-
+//function to select each question until no more remain then log score and reset timer
 function selectQuestion(index) {
     if(index <= 4){
     questiontext.innerHTML = TotalQuestions[index].question
@@ -200,7 +203,7 @@ function selectQuestion(index) {
     }
     console.log(timeScore)
 }
-
+// check to see if selected answer matches with correct answer - if not deduct 5 seconds from timer
 function checker() {
     if(correctSelection === check){
         console.log("correct")
@@ -225,7 +228,7 @@ function checker() {
     }
     nextQuestion()
 }
-
+// event listeners for each answer so answer can be logged individually
 an1.addEventListener('click', function() {
     check = 'A'
     console.log(check)
@@ -248,7 +251,7 @@ an4.addEventListener('click', function() {
 })
 
 
-
+//start and scoreboard buttons on main page to either view scores in local storage or start quiz
 start.addEventListener('click', startquiz);
 score.addEventListener('click', scoreBoard);
 
