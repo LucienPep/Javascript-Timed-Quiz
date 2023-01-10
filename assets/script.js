@@ -85,7 +85,7 @@ function timerstart(){
 }
 
 function zero() {
-    if (seconds > 1){
+    if (timeScore <= 0){
         timeScore = 0
         scoreEnter()
 }else{
