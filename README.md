@@ -23,15 +23,15 @@ WHEN the game is over
 THEN I can save my initials and my score
 ```
 ### Work Description
-I started by writing out sudo code on a blank notepad document to help me understand the path I wanted to take to complete the task. After looking into JS prompt parameters I started to write the JS code to make the application useable.
+I wrote out Sudo code in a Notepad document to help me plan out how I wanted the code to appear. I started by making the base HTML and CSS and making it say and look how I intended.
 
-With the use of if, else if and else statements I was able to create a work path that asked the user for the password parameters and logged the data. After a lot of reading into Math functions and looking at 'random generation properties' found within JS, I was able to create a working random character generator that would use the desired inputs. Along the way I added in warnings if the inputs were invalid or not completed.
+Then I started the JS where I first added questions and buttons, I then linked the button to showing the questions. Next I made the answers visible and clickable. After making each answer move to the next one I added the timer to count down once the question had been started, I added the function of removing 5 seconds from a wrong answer and stopped the clock if no questions remained. I logged the stopped clocks time and created an input for user to add initials. I logged both the stopped time and initials into the localStorage. The page then showed the scoreboard of all scores kept in localStorage. I added a clear button and button to return to the main screen. I made the scoreboard button on the main screen functional.
 
-With minimal de-bugging I was able to create a fully functioning password generator that achieves all acceptance criteria required.
+I had a lot of bugs to sort out within this code, by slowly going through the code I managed to fix all issues and have a fully functioning program.
 
->## [**Link to live GitPage**](https://lucienpep.github.io/JS-Powered-Password-Genrator/)
+>## [**Link to live GitPage**](https://lucienpep.github.io/Javascript-Timed-Quiz/)
 
-![Password Generator](./assets/Screenshot-Password-Generator.png)
+![Password Generator](./assets/Img/lucienpep.github.io_Javascript-Timed-Quiz_.png)
 
 ---
 Lucien Haines UADL 2022
